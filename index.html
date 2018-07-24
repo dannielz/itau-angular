@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html ng-app="demo">
+<head>
+	<meta charset="utf-8" />
+	<title>AngularJs Sample</title>
+	<script src="Scripts/angular.min.js"></script>
+	<script src="Scripts/angular-resource.min.js"></script>
+	<script src="app/app.js"></script>
+	<script src="app/controllers/mainController.js"></script>
+	<link rel="stylesheet" href="Css/bootstrap.min.css">
+	<link rel="stylesheet" href="Css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="Scripts/bootstrap.min.js"></script>
+</head>
+<body>
+
+	<div ng-controller="mainController">
+
+
+
+		<!--<button ng-click="getMostFolloweds()">GetTopUsers</button>
+		<button ng-click="getTweetsGroupedHour()">Tweets Per Hour</button>
+		<button ng-click="getTwettsGroupedHastagLan()">Get tweets by hashtag by lang</button>-->
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Test API</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-item nav-link active" href="#" ng-click="getMostFolloweds()">Users<span class="sr-only">(current)</span></a>
+					<a class="nav-item nav-link active" href="#" ng-click="getTweetsGroupedHour()">Tweets</a>
+					<a class="nav-item nav-link active" href="#" ng-click="getTwettsGroupedHastagLan()">Hashtags</a>
+
+				</div>
+			</div>
+		</nav>
+
+		<table class="table mytable table-hover" ng-show="showTable=='mostFollowed'">
+			<thead class="thead-dark">
+				<tr><th>Index</th><th>Followers Count</th><th>Created at</th><th>ID</th><th>Name</th></tr>
+			</thead>
+				<tr ng-repeat="user in mostfolloweds">
+					<td>{{$index}}</td>
+					<td>{{user.followers_count}}</td>
+					<td>{{user.created_at}}</td>
+					<td>{{user.id}}</td>
+					<td>{{user.name}}</td>
+				</tr>
+		</table>
+
+
+
+		<table class="table mytable table-hover" ng-show="showTable=='tweetPerHourTable'">
+			<thead class="thead-dark">
+				<tr><th>Index</th><th>Count</th><th>Created between</th>
+			</thead>
+				<tr ng-repeat="tweet in tweetsGroupedHour">
+					<td>{{$index}}</td>
+					<td>{{tweet.cnt}}</td>
+					<td>{{tweet.hourStr}}</td>
+				</tr>
+		</table>
+
+
+
+		<table class="table mytable table-hover" ng-show="showTable=='tweetHashtagLangTable'">
+			<thead class="thead-dark">
+				<tr><th>Index</th><th>Hashtag</th><th>User Lang</th><th>Count</th>
+			</thead>
+				<tr ng-repeat="tweet in tweetsGroupedHashtagLang">
+					<td>{{$index}}</td>
+					<td>{{tweet.hashtag}}</td>
+					<td>{{tweet.lang}}</td>
+					<td>{{tweet.cnt}}</td>
+				</tr>
+		</table>
+
+	</div>
+</body>
+</html>
